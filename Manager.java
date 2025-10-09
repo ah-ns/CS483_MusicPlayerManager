@@ -75,7 +75,7 @@ public class Manager {
           if (scanner.hasNextInt()) {
             choice2 = scanner.nextInt();
             scanner.nextLine();
-            if (choice2 >= 0 && choice2 <= 3) break;
+            if (choice2 >= 0 && choice2 <= 4) break;
             else System.out.println("Invalid choice. Please enter a number between 0 and 3.");
           } else {
             System.out.println("Invalid input. Please enter a number.");
@@ -96,7 +96,7 @@ public class Manager {
           default:
             break;
         }
-      } while (choice2 != 0);
+      } while (choice2 == 0);
     }
   }
 

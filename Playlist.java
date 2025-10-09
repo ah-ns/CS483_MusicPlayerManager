@@ -28,9 +28,9 @@ public class Playlist {
    */
   public void removeSong(String songTitle) {
     boolean songFound = false;
-    for (int i = 0; i < songs.size(); i++) {
+    for (int i = 0; i <= songs.size(); i++) {
       String playlistName = songs.get(i).getTitle();
-      if (playlistName.equals(songTitle)) {
+      if (playlistName == (songTitle)) {
         songFound = true;
         songs.remove(i);
         System.out.println("Song removed!");
