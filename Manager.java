@@ -150,7 +150,6 @@ public class Manager {
         break;
       } else {
         System.out.println("Invalid Duration. Please enter a number: ");
-        scanner.nextLine();
       }
     }
     
@@ -165,7 +164,7 @@ public class Manager {
    */
   public static void handleRemoveSongChoice(Scanner scanner, Playlist playlist) {
     System.out.println("Enter title to remove: ");
-    String title = scanner.nextLine();
+    String title = scanner.nextLine() + " ";
     playlist.removeSong(title);
   }
 }

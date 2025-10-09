@@ -42,7 +42,7 @@ public class Library {
     for (int i = 0; i < playlists.size(); i++) {
       Playlist currentPlaylist = playlists.get(i);
 
-      if (currentPlaylist.name.equals(name)) {
+      if (name.equals(currentPlaylist.name)) {
         playlistFound = true;
 
         if (currentPlaylist.songs.isEmpty()) {
