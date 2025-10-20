@@ -1,7 +1,17 @@
+/**
+ * Test cases for the Song class
+ * @author  Hans van Lierop
+ * @version 1
+ */
+
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class SongTest {
+    /*
+     * Checks that creating the song has
+     * expected attributes
+     */
     @Test
     public void testCreateSong() {
         String title = "a";

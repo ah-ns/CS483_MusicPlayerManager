@@ -1,3 +1,9 @@
+/**
+ * Library test cases.
+ * @author  Hans van Lierop
+ * @version 1
+ */
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -9,11 +15,17 @@ public class LibraryTest {
 
     private Library l;
 
+    /**
+     * Initializes a new library for every test case
+     */
     @BeforeEach
     public void init() {
         l = new Library();
     }
 
+    /**
+     * Tests if playlists are added properly to the library
+     */
     @Test
     public void testAddPlaylist() {
         Playlist p1 = new Playlist("S");
@@ -24,6 +36,9 @@ public class LibraryTest {
         assertSame(p2, l.playlists.get(1));
     }
 
+    /**
+     * Test if removing an existing playlist works
+     */
     @Test
     public void testRemoveValidPlaylist() {
         Playlist p1 = new Playlist("S");
@@ -37,6 +52,10 @@ public class LibraryTest {
         assertSame(p3, l.playlists.get(0));
     }
 
+    /**
+     * Test what happens when an invalid playlist is
+     * attempted to be removed
+     */
     @Test
     public void testRemoveInvalidPlaylist() {
         Playlist p1 = new Playlist("S");
@@ -51,6 +70,9 @@ public class LibraryTest {
         assertEquals(originalList, l.playlists);
     }
 
+    /**
+     * Tests if a valid playlist's songs can be viewed
+     */
     @Test
     public void testViewValidPlaylist() {
         Playlist p1 = new Playlist("S");
@@ -63,6 +85,10 @@ public class LibraryTest {
         assertSame(l.playlists.get(2), r);
     }
     
+    /**
+     * Tests what happens if an invalid playlist's
+     * songs are attempted to be viewed
+     */
     @Test
     public void testViewInvalidPlaylist() {
         Playlist p1 = new Playlist("S");
@@ -73,5 +99,17 @@ public class LibraryTest {
         l.addPlaylist(p3);
         Playlist g = l.viewPlaylist("G");
         assertEquals(null, g);
+    }
+
+    /**
+     * Test what happens if a playlist somehow becomes null
+     * and is attempted to be viewed
+     */
+    @Test
+    public void testViewNullPlaylist() {
+        Playlist p = new Playlist("a");
+        l.addPlaylist(p);
+        Playlist ret = l.viewPlaylist(null);
+        assertEquals(null, ret);
     }
 }

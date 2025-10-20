@@ -1,8 +1,18 @@
+/**
+ * Playlist test cases.
+ * @author  Hans van Lierop
+ * @version 1
+ */
+
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
-public class PlaylistTest {  
+public class PlaylistTest {
+
+    /*
+     * Tests if a playlist can be created properly
+     */
     @Test
     public void testCreatePlaylist() {
         String name = "abc";
@@ -11,6 +21,10 @@ public class PlaylistTest {
         assertSame(name, p.name);
     }
 
+    /*
+     * Test if songs are added properly and
+     * the attributes are preserved
+     */
     @Test
     public void testAddSongs() {
         Playlist p = new Playlist("abc");
@@ -23,6 +37,10 @@ public class PlaylistTest {
         assertSame(s2, p.songs.get(1));
     } 
 
+    /*
+     * Test removal of an existing song in
+     * the playlist
+     */
     @Test
     public void testRemoveValidSong() {
         Playlist p = new Playlist("abc");
@@ -34,6 +52,10 @@ public class PlaylistTest {
         assertSame(s2, p.songs.get(0));
     }
 
+    /*
+     * Test removal of a non-existent song
+     * in the playlist
+     */
     @Test
     public void testRemoveInvalidSong() {
         Playlist p = new Playlist("abc");
