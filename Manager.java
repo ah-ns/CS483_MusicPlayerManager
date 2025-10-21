@@ -98,6 +98,7 @@ public class Manager {
             break;
         }
       } while (choice2 != 0);
+      System.out.println("Going back...");
     }
   }
 
