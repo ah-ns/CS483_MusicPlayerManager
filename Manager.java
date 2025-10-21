@@ -74,8 +74,9 @@ public class Manager {
         while (scanner.hasNextLine()) {
           if (scanner.hasNextInt()) {
             choice2 = scanner.nextInt();
-            scanner.nextLine();
-            if (choice2 >= 0 && choice2 <= 4) break;
+            if (scanner.hasNextLine())
+              scanner.nextLine();
+            if (choice2 >= 0 && choice2 <= 3) break;
             else System.out.println("Invalid choice. Please enter a number between 0 and 3.");
           } else {
             System.out.println("Invalid input. Please enter a number.");
@@ -96,7 +97,7 @@ public class Manager {
           default:
             break;
         }
-      } while (choice2 == 0);
+      } while (choice2 != 0);
     }
   }
 
@@ -150,6 +151,7 @@ public class Manager {
         break;
       } else {
         System.out.println("Invalid Duration. Please enter a number: ");
+        scanner.nextLine();
       }
     }
     
@@ -164,7 +166,7 @@ public class Manager {
    */
   public static void handleRemoveSongChoice(Scanner scanner, Playlist playlist) {
     System.out.println("Enter title to remove: ");
-    String title = scanner.nextLine() + " ";
+    String title = scanner.nextLine();
     playlist.removeSong(title);
   }
 }
