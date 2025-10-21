@@ -29,7 +29,7 @@ public class ManagerTest {
      * 
      * Initially resulted in an infinite scanner.hasNextLine loop
      */
-    //@Test
+    @Test
     @Timeout(1)
     void testAddSongInvalidDuration() {
         Playlist p = new Playlist("playlist");
@@ -64,11 +64,11 @@ public class ManagerTest {
      * The menu should only accept options 0-3
      */
     @Test
-    void testInvalidMenuSelection() {
+    void testInvalidMenuNumberSelection() {
         Library l = new Library();
         l.addPlaylist(new Playlist("playlist"));
         String userInput = String.join(System.lineSeparator(),
-            "playlist", "4", ""
+            "playlist", "5", "0"
         );
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);
@@ -82,7 +82,35 @@ public class ManagerTest {
         m.handleViewPlaylistChoice(new Scanner(System.in), l);
         
         String[] lines = baos.toString().split(System.lineSeparator());
-        String actual = lines[lines.length-1];
+        String actual = lines[lines.length-2];
+
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Tests invalid view playlist menu option
+     * The menu should only accept options 0-3, no letters
+     */
+    @Test
+    void testAlphabeticMenuSelection() {
+        Library l = new Library();
+        l.addPlaylist(new Playlist("playlist"));
+        String userInput = String.join(System.lineSeparator(),
+            "playlist", "adafsdf", ""
+        );
+        ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(bais);
+        
+        // Set expected output
+        String expected = "Invalid input. Please enter a number.";
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+        System.setOut(printStream);
+
+        m.handleViewPlaylistChoice(new Scanner(System.in), l);
+        
+        String[] lines = baos.toString().split(System.lineSeparator());
+        String actual = lines[lines.length-2];
 
         assertEquals(expected, actual);
     }
@@ -102,7 +130,7 @@ public class ManagerTest {
         System.setIn(bais);
         
         // Set expected output
-        String expected = "\n1- View a Playlist\n2- New Playlist\n3- Remove Playlist\n4- View all playlists\n0- Exit";
+        String expected = "Going back...";
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream printStream = new PrintStream(baos);
         System.setOut(printStream);
