@@ -143,5 +143,172 @@ public class ManagerTest {
         assertEquals(expected, actual);
     }
 
+    /**
+     * Tests new playlist handling function
+     */
+    @Test
+    void testNewPlaylistChoice() {
+        Library l = new Library();
+        Playlist p = new Playlist("playlist");
+        l.addPlaylist(p);
+        String userInput = String.join(System.lineSeparator(),
+            "playlist"
+        );
+        ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(bais);
 
+        m.handleNewPlaylistChoice(new Scanner(System.in), l);
+        assertSame(p, l.playlists.get(0));
+    }
+    
+    /**
+     * Tests removal playlist handler function
+     */
+    @Test
+    void testPlaylistRemoveChoice() {
+        Library l = new Library();
+        Playlist p = new Playlist("playlist");
+        Playlist p2 = new Playlist("p2");
+        l.addPlaylist(p);
+        l.addPlaylist(p2);
+        String userInput = String.join(System.lineSeparator(),
+            "playlist"
+        );
+        ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(bais);
+
+        m.handleRemovePlaylistChoice(new Scanner(System.in), l);
+        
+        assertEquals("p2", l.playlists.get(0).name);
+    }
+    
+    /**
+     * Tests empty library removal of playlist
+     */
+    @Test
+    void testEmptyLibraryRemovalWithHandler() {
+        Library l = new Library();
+        String userInput = String.join(System.lineSeparator(),
+            "playlist", "0", ""
+        );
+        ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(bais);
+        
+        // Set expected output
+        String expected = "There are no playlists to remove.";
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+        System.setOut(printStream);
+
+        m.handleRemovePlaylistChoice(new Scanner(System.in), l);
+        
+        String[] lines = baos.toString().split(System.lineSeparator());
+        String actual = lines[lines.length-1];
+
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Tests empty library removal of playlist
+     */
+    @Test
+    void testEmptyLibraryViewWithHandler() {
+        Library l = new Library();
+        String userInput = String.join(System.lineSeparator(),
+            "playlist", "0", ""
+        );
+        ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(bais);
+        
+        // Set expected output
+        String expected = "There are no playlists to view.";
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+        System.setOut(printStream);
+
+        m.handleViewPlaylistChoice(new Scanner(System.in), l);
+        
+        String[] lines = baos.toString().split(System.lineSeparator());
+        String actual = lines[lines.length-1];
+
+        assertEquals(expected, actual);
+    }
+    
+    /**
+     * Test main
+     */
+    @Test
+    void testMain() {
+        Library l = new Library();
+        String userInput = String.join(System.lineSeparator(),
+            "0", "0"
+        );
+        ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(bais);
+        
+        // Set expected output
+        String expected = "\n1- View a Playlist\n2- New Playlist\n3- Remove Playlist\n4- View all playlists\n0- Exit";
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+        System.setOut(printStream);
+
+        m.main(new String[] {""});
+        
+        String[] lines = baos.toString().split(System.lineSeparator());
+        String actual = lines[lines.length-1];
+
+        assertEquals(expected, actual);
+    }
+    
+    /**
+     * Test main with a number not 0-4
+     */
+    @Test
+    void testMainInvalidChoice() {
+        Library l = new Library();
+        String userInput = String.join(System.lineSeparator(),
+            "5", "0", ""
+        );
+        ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(bais);
+        
+        // Set expected output
+        String expected = "Invalid choice. Please enter a number between 0 and 4.";
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+        System.setOut(printStream);
+
+        m.main(new String[] {""});
+        
+        String[] lines = baos.toString().split(System.lineSeparator());
+        String actual = lines[lines.length-1];
+
+        assertEquals(expected, actual);
+    }
+    
+    /**
+     * Test main with a letter instead of a number
+     */
+    @Test
+    void testMainNonNumber() {
+        Library l = new Library();
+        String userInput = String.join(System.lineSeparator(),
+            "a", ""
+        );
+        ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(bais);
+        
+        // Set expected output
+        String expected = "Invalid input. Please enter a number.";
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(baos);
+        System.setOut(printStream);
+
+        m.main(new String[] {""});
+        
+        String[] lines = baos.toString().split(System.lineSeparator());
+        String actual = lines[lines.length-1];
+
+        assertEquals(expected, actual);
+    }
 }
