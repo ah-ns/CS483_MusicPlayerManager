@@ -28,7 +28,7 @@ public class PlaylistTest {
     @Test
     public void testAddSongs() {
         Playlist p = new Playlist("abc");
-        Song s1 = new Song("a", "b", (float)'c');
+        Song s1 = new Song(new String("a"), new String("b"), (float)'c');
         Song s2 = new Song("e", "f", (float)'g');
         p.addSong(s1);
         p.addSong(s2);
@@ -44,7 +44,7 @@ public class PlaylistTest {
     @Test
     public void testRemoveValidSong() {
         Playlist p = new Playlist("abc");
-        Song s1 = new Song("a", "b", (float)'c');
+        Song s1 = new Song(new String("a"), "b", (float)'c');
         Song s2 = new Song("e", "f", (float)'g');
         p.addSong(s1);
         p.addSong(s2);
@@ -59,7 +59,7 @@ public class PlaylistTest {
     @Test
     public void testRemoveInvalidSong() {
         Playlist p = new Playlist("abc");
-        Song s1 = new Song("a", "b", (float)'c');
+        Song s1 = new Song(new String("a"), new String("b"), (float)'c');
         p.addSong(s1);
         ArrayList<Song> originalList = (ArrayList<Song>)p.songs.clone();
         p.removeSong("e");

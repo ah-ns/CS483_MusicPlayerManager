@@ -68,7 +68,7 @@ public class ManagerTest {
         Library l = new Library();
         l.addPlaylist(new Playlist("playlist"));
         String userInput = String.join(System.lineSeparator(),
-            "playlist", "4"
+            "playlist", "4", ""
         );
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);
@@ -96,7 +96,7 @@ public class ManagerTest {
         Library l = new Library();
         l.addPlaylist(new Playlist("playlist"));
         String userInput = String.join(System.lineSeparator(),
-            "playlist", "0"
+            "playlist", "0", ""
         );
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);

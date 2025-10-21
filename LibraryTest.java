@@ -28,7 +28,7 @@ public class LibraryTest {
      */
     @Test
     void testAddPlaylist() {
-        Playlist p1 = new Playlist("S");
+        Playlist p1 = new Playlist(new String("S"));
         Playlist p2 = new Playlist("J");
         l.addPlaylist(p1);
         l.addPlaylist(p2);
@@ -41,13 +41,14 @@ public class LibraryTest {
      */
     @Test
     void testRemoveValidPlaylist() {
-        Playlist p1 = new Playlist("S");
+        // Use new String to check for == comparing strings
+        Playlist p1 = new Playlist(new String("Str"));
         Playlist p2 = new Playlist("J");
         Playlist p3 = new Playlist("r");
         l.addPlaylist(p1);
         l.addPlaylist(p2);
         l.addPlaylist(p3);
-        l.removePlaylist("S");
+        l.removePlaylist("Str");
         l.removePlaylist("J");
         assertSame(p3, l.playlists.get(0));
     }
@@ -58,7 +59,7 @@ public class LibraryTest {
      */
     @Test
     void testRemoveInvalidPlaylist() {
-        Playlist p1 = new Playlist("S");
+        Playlist p1 = new Playlist(new String("S"));
         Playlist p2 = new Playlist("J");
         Playlist p3 = new Playlist("r");
         l.addPlaylist(p1);
@@ -75,7 +76,7 @@ public class LibraryTest {
      */
     @Test
     void testViewValidPlaylist() {
-        Playlist p1 = new Playlist("S");
+        Playlist p1 = new Playlist(new String("S"));
         Playlist p2 = new Playlist("J");
         Playlist p3 = new Playlist("r");
         l.addPlaylist(p1);
@@ -91,7 +92,7 @@ public class LibraryTest {
      */
     @Test
     void testViewInvalidPlaylist() {
-        Playlist p1 = new Playlist("S");
+        Playlist p1 = new Playlist(new String("S"));
         Playlist p2 = new Playlist("J");
         Playlist p3 = new Playlist("r");
         l.addPlaylist(p1);
@@ -107,7 +108,7 @@ public class LibraryTest {
      */
     @Test
     void testViewNullPlaylist() {
-        Playlist p = new Playlist("a");
+        Playlist p = new Playlist(new String("a"));
         l.addPlaylist(p);
         Playlist ret = l.viewPlaylist(null);
         assertEquals(null, ret);
