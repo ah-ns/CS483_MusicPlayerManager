@@ -19,7 +19,7 @@ public class LibraryTest {
      * Initializes a new library for every test case
      */
     @BeforeEach
-    public void init() {
+    void init() {
         l = new Library();
     }
 
@@ -27,7 +27,7 @@ public class LibraryTest {
      * Tests if playlists are added properly to the library
      */
     @Test
-    public void testAddPlaylist() {
+    void testAddPlaylist() {
         Playlist p1 = new Playlist("S");
         Playlist p2 = new Playlist("J");
         l.addPlaylist(p1);
@@ -40,7 +40,7 @@ public class LibraryTest {
      * Test if removing an existing playlist works
      */
     @Test
-    public void testRemoveValidPlaylist() {
+    void testRemoveValidPlaylist() {
         Playlist p1 = new Playlist("S");
         Playlist p2 = new Playlist("J");
         Playlist p3 = new Playlist("r");
@@ -57,7 +57,7 @@ public class LibraryTest {
      * attempted to be removed
      */
     @Test
-    public void testRemoveInvalidPlaylist() {
+    void testRemoveInvalidPlaylist() {
         Playlist p1 = new Playlist("S");
         Playlist p2 = new Playlist("J");
         Playlist p3 = new Playlist("r");
@@ -74,7 +74,7 @@ public class LibraryTest {
      * Tests if a valid playlist's songs can be viewed
      */
     @Test
-    public void testViewValidPlaylist() {
+    void testViewValidPlaylist() {
         Playlist p1 = new Playlist("S");
         Playlist p2 = new Playlist("J");
         Playlist p3 = new Playlist("r");
@@ -90,7 +90,7 @@ public class LibraryTest {
      * songs are attempted to be viewed
      */
     @Test
-    public void testViewInvalidPlaylist() {
+    void testViewInvalidPlaylist() {
         Playlist p1 = new Playlist("S");
         Playlist p2 = new Playlist("J");
         Playlist p3 = new Playlist("r");
@@ -106,7 +106,7 @@ public class LibraryTest {
      * and is attempted to be viewed
      */
     @Test
-    public void testViewNullPlaylist() {
+    void testViewNullPlaylist() {
         Playlist p = new Playlist("a");
         l.addPlaylist(p);
         Playlist ret = l.viewPlaylist(null);
