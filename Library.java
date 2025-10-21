@@ -22,8 +22,8 @@ public class Library {
    */
   public void removePlaylist(String name) {
     boolean playlistFound = false;
-    for (int i = 1; i < playlists.size(); i++) {
-      if (playlists.get(i).name == (name)) {
+    for (int i = playlists.size()-1; i >= 0; i--) {
+      if (playlists.get(i).name.equals(name)) {
         playlistFound = true;
         playlists.remove(i);
       }
@@ -42,7 +42,7 @@ public class Library {
     for (int i = 0; i < playlists.size(); i++) {
       Playlist currentPlaylist = playlists.get(i);
 
-      if (name.equals(currentPlaylist.name)) {
+      if (currentPlaylist.name.equals(name)) {
         playlistFound = true;
 
         if (currentPlaylist.songs.isEmpty()) {
